@@ -1,0 +1,328 @@
+@nav-height: 56px;
+@row-count: 2;
+@title-size: 112px;
+@icon-size: 48px;
+@title-height: 32px;
+@input-focus-color:rgb(26, 115, 232);
+@input-color:rgb(32, 33, 36);
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: fit-content;
+  position: relative;
+  z-index: 1;
+  padding-top: @nav-height;
+}
+
+.logoBox {
+  width: 272px;
+  height: 200px;
+  margin-bottom: 38px;
+  z-index: 1;
+  position: relative;
+  & > img {
+    height: 92px;
+    width: 272px;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.realBox {
+  margin-bottom: 16px;
+  height: 44px;
+  position: relative;
+  @media (min-width: 560px) {
+    width: 449px;
+  }
+  @media (min-width: 672px) {
+    width: 561px;
+  }
+}
+
+.input {
+  background-color: white;
+  border: none;
+  border-radius: 22px;
+  font-size: 16px;
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-inline-end: 44px;
+  padding-inline-start: 52px;
+  box-shadow: 0 1px 6px 0 rgb(172, 169, 169);
+  position: absolute;
+}
+
+.inputBefore,
+.inputAfter {
+  position: absolute;
+  height: 100%;
+  width: 32px;
+
+  & > img {
+    width: 24px;
+    height: 24px;
+    margin: 10px 0;
+  }
+}
+
+.inputBefore {
+  left: 12px;
+}
+
+.inputAfter {
+  right: 12px;
+}
+
+/* WebKit browsers */
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+
+  /* transparent是全透明黑色(black)的速记法，即一个类似rgba(0,0,0,0)这样的值 */
+}
+
+/* Mozilla Firefox 4 to 18 */
+
+input:focus:-moz-placeholder {
+  color: transparent;
+}
+
+/* Mozilla Firefox 19+ */
+
+input:focus::-moz-placeholder {
+  color: transparent;
+}
+
+/* Internet Explorer 10+ */
+
+input:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  height: calc(@row-count * @title-size);
+  justify-content: center;
+  margin-bottom: 8px;
+  overflow: hidden;
+  padding: 2px;
+  transition: opacity 300ms ease-in-out;
+
+  & > .tile,
+  & > .addShortcut {
+    display: flex;
+    min-width: 112px;
+    flex-direction: column;
+    height: @title-size;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    user-select: none;
+    border-radius: 4px;
+    background-color: inherit;
+    position: relative;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+  
+      & > .icon{
+        opacity: 1;
+      }
+    }
+  
+    & > .icon {
+      width: 20px;
+      height: 20px;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      right:0;
+      transition: opacity 300ms ease-in-out;
+      padding: 8px 8px 0 0;
+    }
+  
+    & > .tileIcon {
+      align-items: center;
+      background-color: rgba(241, 243, 244, 1);
+      border-radius: 50%;
+      display: flex;
+      flex-shrink: 0;
+      height: @icon-size;
+      justify-content: center;
+      width: @icon-size;
+      margin: 0 auto;
+      margin-top: 16px;
+  
+      & > img {
+        width:24px;
+        height: 24px;
+        font-size: 12px;
+      }
+    }
+
+    & > .tileTitle {
+      align-items: center;
+      text-align: center;
+      border-radius: 12px;
+      color: #000;
+      display: flex;
+      height: @title-height;
+      line-height: calc(@title-height / 2);
+      margin-top: 6px;
+      padding: 2px 8px;
+      width: 88px;
+      & > span {
+        margin: 0 auto;
+        font-size: 13px;
+        font-weight: 400;
+        overflow: hidden;
+        text-align: center;
+        text-overflow: ellipsis;
+        text-shadow: none;
+        white-space: nowrap;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.bgShadow {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  justify-content: space-around;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  & > .shadeBox {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & > .modalBox {
+      width: 512px;
+      height: 266px;
+      border-radius: 8px;
+      box-sizing: border-box;
+      background-color: #fff;
+      box-shadow: 0 16px 16px rgb(0 0 0 0.3);
+      padding: 0 20px;
+    
+      & > .modalTitle {
+        padding: 16px 0;
+        font-size: 15px;
+      }
+
+      & > .modalForm {
+        margin: 0;
+        padding: 0;
+
+        & > .formField {
+          margin-bottom: 10px;
+          padding: 0px;
+          border: none;
+
+          & > label {
+            margin: 0 0 8px;
+            color: rgba(0, 0, 0, 0.7);
+            line-height: 32px;
+            font-weight: 500;
+            font-size: 12px;
+          }
+  
+          & > input {
+            background-color: rgb(241, 243, 244);
+            display: block;
+            -webkit-appearance: none;
+            border: none;
+            box-sizing: border-box;
+            caret-color: @input-focus-color;
+            color: @input-color;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            min-height: 24px;
+            font-size: 12px;
+            outline: none;
+            padding: 6px 8px;
+            text-align: inherit;
+            text-overflow: ellipsis;
+            width: 100%;
+            border-radius: 4px;
+  
+            &:focus {
+              border-bottom: rbg(26, 115, 232);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.formGroup {
+  float: right;
+  margin-top: 24px;
+
+  & > .normalButton,
+  & > .submitButton,
+  & > .submitDisable {
+    border: 1px solid rgb(218, 220, 224);
+    align-items: center;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: rgb(26, 115, 232);
+    cursor: pointer;
+    display: inline-flex;
+    flex-shrink: 0;
+    font-weight: 500;
+    height: 32px;
+    justify-content: center;
+    min-width: 5.14em;
+    outline-width: 0;
+    padding: 8px 16px;
+    position: relative;
+    user-select: none;
+
+    &:hover {
+      border-color:rgb(210, 227, 252)
+    }
+  }
+
+  & > .normalButton {
+    margin:0;
+    margin-right: 8px;
+  }
+
+  & > .submitButton {
+    background-color: rgb(26, 115, 232);
+    border: none;
+    color: white;
+    &:hove {
+      background-color: rgb(174, 203, 250);
+    }
+  }
+
+  & > .submitDisable {
+    background-color: rgb(241, 243, 244);
+    cursor: default;
+  }
+}
